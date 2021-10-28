@@ -18,8 +18,8 @@ export const App = () => {
   return (
     <>
       <div className="container">
-        <header class="site-header site-header-bg">
-          <h1 className="header-title">Best site</h1>
+        <header className="site-header site-header-bg">
+          <h1 className="header-title">My site</h1>
           <div className="spider spider-animation"></div>
         </header>
       </div>

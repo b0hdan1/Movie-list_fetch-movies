@@ -31,37 +31,15 @@ html {
 } */
 
 .site-header h1 {
-  font-size: 4rem;
-  position: relative;
-  background: rgba(255,255,255,.5);
-  display: inline-block;
+  font-size: 2.5rem;
   opacity: .3;
 }
 
 .header-title {
   height: max-content;
-  margin: auto 40%;
-  border-radius: 40%;
+  margin: auto 45%;
+  color: rgba(255, 255, 255, 0.856);
   cursor: pointer;
-}
-
-.site-header-bg {
-  background-size: cover;
-  background-position-x: 50%;
-  background-position-y: -30%;
-  background-repeat: no-repeat;
-  animation-name: header-animation;
-  animation-duration: 3s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes header-animation {
-  0% {
-      background-position-y: -30%;
-  }
-  100%{
-      background-position-y: 100%;
-  }
 }
 
 .spider {
@@ -72,29 +50,28 @@ html {
   background-size: contain;
   right: 200px;
   top: -300px;
-  cursor: pointer;
 }
 
 .spider-animation {
   animation-name: header-animation-spider;
-  animation-duration: 5s;
+  animation-duration: 4.5s;
   animation-fill-mode: forwards;
+}
+
+.spider-animation:hover {
+  display: none;
 }
 
 @keyframes header-animation-spider {
   0% {
-      top: -300%;
+    top: -260px;
   }
-  60% {
-      top: -85px;
+
+  50% {
+    top: -110px;
   }
-  70% {
-      top:-130px;
-  }
-  80% {
-      top:-100px;
-  }
+
   100% {
-     top: -115px;
+    top: -140px;
   }
 }
