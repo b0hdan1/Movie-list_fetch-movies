@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import './App.scss';
-import { MoviesList } from './components/MoviesList';
-import { FindMovie } from './components/FindMovie';
-import data from './api/movies.json';
+import React, { useState } from "react";
+import "./App.scss";
+import { MoviesList } from "./components/MoviesList";
+import { FindMovie } from "./components/FindMovie";
+import data from "./api/movies.json";
 
 export const App = () => {
   const [movies, setMovie] = useState(data);
   const [addErrorMessage, setAddError] = useState(true);
   const addMovie = (movie) => {
-    if (!movies.some(item => item.imdbId === movie.imdbId)) {
+    if (!movies.some((item) => item.imdbId === movie.imdbId)) {
       setMovie([...movies, movie]);
     } else {
       setAddError(false);
@@ -17,12 +17,13 @@ export const App = () => {
 
   return (
     <>
-      <div className="container">
-        <header className="site-header site-header-bg">
-          <h1 className="header-title">My site</h1>
+      <header>
+        <div className="top-header">
           <div className="spider spider-animation"></div>
-        </header>
-      </div>
+          <h1 className="header-title">4K</h1>
+          <p className="header-title_secondary">Movie</p>
+        </div>
+      </header>
       <div className="page">
         <div className="page-content">
           <MoviesList movies={movies} />
@@ -31,7 +32,8 @@ export const App = () => {
           <FindMovie
             addMovie={addMovie}
             getAddError={setAddError}
-            addErrorMessage={addErrorMessage} />
+            addErrorMessage={addErrorMessage}
+          />
         </div>
       </div>
     </>

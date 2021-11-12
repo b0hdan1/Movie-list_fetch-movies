@@ -3,27 +3,26 @@
 }
 
 .card {
-  background: url(../../images/bg_1.jpg);
   border: 1px solid gray;
   border-radius: 10px;
   color: gray;
   cursor: pointer;
   transition: 1s;
-  overflow: hidden;
+  background-color: rgba(17, 3, 22, 0.2);
 }
 
 .title {
   color: rgba(255, 255, 255, 0.856);
 }
 
-.card:hover {
-  transform: scale(1.1);
-}
-
-.card-link {
+.content {
   color: gray;
 }
 
-.card-link:hover {
-  color: blue;
+.card:hover {
+  transform: scale(1.1);
+  color: #fff;
 }
+
+
+

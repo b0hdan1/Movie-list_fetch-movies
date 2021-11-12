@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
-import './FindMovie.scss';
-import classnames from 'classnames';
-import propTypes from 'prop-types';
-import { request } from '../../api/getApi';
-import { MovieCard } from '../MovieCard';
+import React, { useState } from "react";
+import "./FindMovie.scss";
+import classnames from "classnames";
+import propTypes from "prop-types";
+import { request } from "../../api/getApi";
+import { MovieCard } from "../MovieCard";
 
 export const FindMovie = ({ addMovie, addErrorMessage, getAddError }) => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [movie, setMovie] = useState({});
   const [showErrorMessage, setErrorMessage] = useState(true);
 
-  async function loadMovie() {
-    const loadingApi = await request(title);
+  async function loadMovie(e) {
+    if (title === "") {
+      return;
+    }
 
+    const loadingApi = await request(title);
     setMovie(loadingApi);
-    if (loadingApi.Response === 'False') {
+    if (loadingApi.Response === "False") {
       setErrorMessage(false);
     }
   }
@@ -35,7 +38,7 @@ export const FindMovie = ({ addMovie, addErrorMessage, getAddError }) => {
 
   return (
     <>
-      <form className="find-movie" onSubmit={event => event.preventDefault()}>
+      <form className="find-movie" onSubmit={(event) => event.preventDefault()}>
         <div className="field">
           <label className="label" htmlFor="movie-title">
             Movie title
@@ -48,33 +51,34 @@ export const FindMovie = ({ addMovie, addErrorMessage, getAddError }) => {
                 setErrorMessage(true);
                 getAddError(true);
               }}
+              onKeyPress={(e) => (e.key === "Enter" ? loadMovie(e) : "")}
               type="text"
               id="movie-title"
               placeholder="Enter a title to search"
-              className={classnames(showErrorMessage && addErrorMessage
-                ? 'input'
-                : 'input is-danger')}
+              className={classnames(
+                showErrorMessage && addErrorMessage
+                  ? "input"
+                  : "input is-danger"
+              )}
             />
           </div>
           {!showErrorMessage && (
-              <p className="help is-danger">
-                Can&apos;t find a movie with such a title
-              </p>
-            )
-          }
+            <p className="help is-danger">
+              Can&apos;t find a movie with such a title
+            </p>
+          )}
           {!addErrorMessage && (
-              <p className="help is-danger">
-                Such a movie has already been added
-              </p>
-            )
-          }
+            <p className="help is-danger">
+              Such a movie has already been added
+            </p>
+          )}
         </div>
         <div className="field is-grouped">
           <div className="control">
             <button
               type="button"
               className="button is-light"
-              onClick={loadMovie}
+              onClick={(e) => loadMovie(e)}
             >
               Find a movie
             </button>
@@ -92,13 +96,12 @@ export const FindMovie = ({ addMovie, addErrorMessage, getAddError }) => {
         </div>
       </form>
       <div className="container">
-        {film.title
-          && (
+        {film.title && (
           <>
             <h2 className="title">Preview</h2>
             <MovieCard {...film} />
           </>
-          )}
+        )}
       </div>
     </>
   );
